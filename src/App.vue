@@ -1,15 +1,19 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Navbar></Navbar>
+  <div class="main-body">
+    <ticket></ticket>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/Navbar.vue'
+import Ticket from './components/Ticket.vue'
 
 export default {
-  name: 'App',
+  name: 'KDS',
   components: {
-    HelloWorld
+    Navbar,
+    Ticket
   }
 }
 </script>
@@ -21,6 +25,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
+body {
+  margin:  0;
+}
+
+.main-body {
+  padding: 72px 40px;
+}
+
 </style>

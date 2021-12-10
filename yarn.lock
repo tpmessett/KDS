@@ -911,6 +911,11 @@
     "@babel/helper-validator-identifier" "^7.15.7"
     to-fast-properties "^2.0.0"
 
+"@dafcoe/vue-swappable-card@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@dafcoe/vue-swappable-card/-/vue-swappable-card-0.1.2.tgz#1ae57cd355e4131fc5a9a8172d683260eccbb13c"
+  integrity sha512-dJ2WplG+jAl3aOyv3sW/pVAE3UO2eHa3ZpD2gRlqBeMDpXIUPI3VUYYOEhyz7AmZgDsoyUJIo4Y8utR9AQw9nA==
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.npmmirror.com/@hapi/address/download/@hapi/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
