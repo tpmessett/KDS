@@ -13,7 +13,7 @@ export default {
   name: 'KDS',
   components: {
     Navbar,
-    Ticket
+    Ticket,
   }
 }
 </script>

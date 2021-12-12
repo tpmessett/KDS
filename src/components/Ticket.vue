@@ -30,7 +30,7 @@
             <div><h5>ORDER ID: XXXXX</h5></div>
             <div class="time"><h5>5:00 PM - 5:15 PM</h5></div>
           </div>
-          <div class="items">
+          <div class="items person-details">
               <P><strong>NAME:</strong> </P>
               <P><strong>PHONE:</strong> </P>
               <P><strong>METHOD:</strong> </P>
@@ -54,6 +54,14 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .person-details {
+    padding: 16px 8px;
+  }
+
+  .person-details p {
+    margin-bottom:  16px;
+  }
+
   .footer {
     text-align: right;
     border-top: 1px solid #eee;
