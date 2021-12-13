@@ -74,4 +74,9 @@ li {
 a {
   color: #42b983;
 }
+
+select {
+  margin: 12px 40px;
+  padding: 12px;
+}
 </style>
