@@ -18,8 +18,8 @@
                 </li>
                 <li>item</li>
               </ul>
-              <H5 class='notes'>ORDER NOTES:</H5>
-              <P>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</P>
+              <h5 class='notes'>ORDER NOTES:</h5>
+              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
           </div>
           <div class="footer">
             <a class="btn-flat" href="https://google.com">MARK AS READY</a>
@@ -31,10 +31,10 @@
             <div class="time"><h5>5:00 PM - 5:15 PM</h5></div>
           </div>
           <div class="items person-details">
-              <P><strong>NAME:</strong> </P>
-              <P><strong>PHONE:</strong> </P>
-              <P><strong>METHOD:</strong> </P>
-              <P><strong>EMAIL:</strong> </P>
+              <p><strong>NAME:</strong> </p>
+              <p><strong>PHONE:</strong> </p>
+              <p><strong>METHOD:</strong> </p>
+              <p><strong>EMAIL:</strong> </p>
           </div>
       </template>
     </vue-swappable-card>

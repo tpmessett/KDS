@@ -3,14 +3,41 @@
     <div>
       <img src="../assets/logo.png" alt="Slerp">
     </div>
-    <div class="stats">
-      Orders Pending: <strong>4</strong> | Orders Completed: <strong>12</strong>
+    <div>
+      <select class="form-control" name="stores" v-if="result && result.stores">
+        <option v-for="location in result.stores" :key="location.id">
+          {{ location.name }}
+        </option>
+      </select>
     </div>
   </div>
 </template>
 
 <script>
-
+  import { useQuery } from "@vue/apollo-composable";
+  import { gql } from "@apollo/client/core"
+  import { ref } from "vue"
+  const QUERY = gql `
+    query {
+      stores(where: {archived_at: {_is_null: true}}) {
+        id
+        name
+      }
+    }
+  `;
+  export default {
+   setup() {
+      let result = ref();
+      const { onResult } = useQuery(QUERY)
+      onResult(({ data }) => {
+        result.value = data
+        console.log(result.value)
+    })
+      return {
+        result
+      }
+    }
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -31,13 +58,6 @@
   max-height: 40px;
   max-width: 40px;
   padding: 12px 0 8px 40px;
-}
-
-.stats {
-  color: white;
-  font-size: 18px;
-  padding: 18px 40px 16px 0;
-  height: 30px;
 }
 
 h3 {

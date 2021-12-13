@@ -8,11 +8,29 @@
 <script>
 import Navbar from './components/Navbar.vue'
 import Ticket from './components/Ticket.vue'
+// import { useQuery } from "@vue/apollo-composable";
+// import { gql } from "@apollo/client/core"
+// const QUERY = gql `
+//   query {
+//     stores {
+//       id
+//       name
+//     }
+//   }
+// `;
 export default {
   name: 'KDS',
   components: {
     Navbar,
     Ticket,
+  // }, setup() {
+  //   const { result, error } = useQuery(QUERY)
+  //   console.log(result)
+  //   console.log(error)
+  //   return {
+  //     result,
+  //     error,
+  //   }
   }
 }
 </script>

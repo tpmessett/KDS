@@ -9,7 +9,7 @@ import { DefaultApolloClient } from '@vue/apollo-composable'
 const httpLink = createHttpLink({
   uri: 'https://partner.api.slerp.com/v1/graphql',
   headers: {
-  authorization: 'Bearer ' + `${process.env.KEY}`,
+  authorization: 'Bearer ' + process.env.VUE_APP_KEY,
 
     }
   // credentials: 'include'
