@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createStore } from 'vuex'
 import App from './App.vue'
 //import VueApollo from "vue-apollo";
 
@@ -24,5 +25,19 @@ const apolloClient = new ApolloClient({
   cache,
 })
 
-createApp(App).provide(DefaultApolloClient, apolloClient).mount('#app')
+const store = createStore({
+  state () {
+    return {
+      location: ""
+    }
+  },
+  mutations: {
+    setLocation (state: any, location: string) {
+      state.location = location
+    }
+  }
+})
+
+createApp(App).provide(DefaultApolloClient, apolloClient).use(store).mount('#app')
+
 

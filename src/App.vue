@@ -31,6 +31,11 @@ export default {
   //     result,
   //     error,
   //   }
+  }, computed: {
+    location () {
+      console.log(this.$store.state.location)
+      return this.$store.state.location
+    }
   }
 }
 </script>

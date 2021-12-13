@@ -4,7 +4,8 @@
       <img src="../assets/logo.png" alt="Slerp">
     </div>
     <div>
-      <select class="form-control" name="stores" v-if="result && result.stores">
+      <select name="stores" v-if="result && result.stores" @change="setLocation($event)" v-model="loc">
+        <option value="" disabled selected>Select your Store</option>
         <option v-for="location in result.stores" :key="location.id">
           {{ location.name }}
         </option>
@@ -26,6 +27,16 @@
     }
   `;
   export default {
+    data: function () {
+      return {
+        loc: ""
+      };
+    },
+    methods: {
+    setLocation(event) {
+      this.$store.commit('setLocation', event.target.value)
+    }
+  },
    setup() {
       let result = ref();
       const { onResult } = useQuery(QUERY)
