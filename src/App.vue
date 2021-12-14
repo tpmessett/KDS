@@ -3,7 +3,7 @@
   <div class="main-body">
 
     <ticket></ticket>
-    {{ location }}
+    {{ orders }}
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
   }, setup() {
     const store = useStore()
     return {
-      location: computed(() => store.state.orders)
+      orders: computed(() => store.state.orders["orders"]),
     }
   },
 }
