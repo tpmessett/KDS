@@ -2,7 +2,6 @@ import { createApp } from 'vue'
 import { createStore } from 'vuex'
 import App from './App.vue'
 //import VueApollo from "vue-apollo";
-
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core'
 import { DefaultApolloClient } from '@vue/apollo-composable'
 
