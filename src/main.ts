@@ -4,6 +4,9 @@ import App from './App.vue'
 //import VueApollo from "vue-apollo";
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client/core'
 import { DefaultApolloClient } from '@vue/apollo-composable'
+import { provideApolloClient } from '@vue/apollo-composable'
+import { useQuery } from "@vue/apollo-composable";
+import { gql } from "@apollo/client/core"
 
 // HTTP connection to the API
 const httpLink = createHttpLink({
@@ -12,7 +15,6 @@ const httpLink = createHttpLink({
   authorization: 'Bearer ' + process.env.VUE_APP_KEY,
 
     }
-  // credentials: 'include'
   });
 
 // Cache implementation
@@ -24,15 +26,43 @@ const apolloClient = new ApolloClient({
   cache,
 })
 
+provideApolloClient(apolloClient)
+
 const store = createStore({
   state () {
     return {
-      location: ""
+      orders: {}
     }
   },
   mutations: {
     setLocation (state: any, location: string) {
-      state.location = location
+      const QUERY = gql `
+        query Orders {
+          orders(where: {fulfillment_date: {_gte: "2021-12-14", _lt: "2021-12-15"}, store: {name: {_eq: "${location}"}}}) {
+          delivery_eta
+          fulfillment_date
+          pickup_time
+          recipient_details
+          order_notes
+          order_items {
+            quantity
+            product_variant {
+              name
+            }
+            applied_modifiers {
+              modifier {
+                name
+              }
+              quantity
+            }
+          }
+        }
+        }
+      `
+      const { result, error } = useQuery(QUERY)
+      console.log(result)
+      console.log(error)
+      state.orders = result
     }
   }
 })
