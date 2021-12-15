@@ -36,29 +36,44 @@ const store = createStore({
   },
   mutations: {
     setLocation (state: any, location: string) {
+      const today = new Date()
+      const date = today.toISOString().split('T')[0]
+      const tomorrow = new Date()
+      tomorrow.setDate(today.getDate() + 1)
+      const date_tomorrow = tomorrow.toISOString().split('T')[0]
       const QUERY = gql `
         query Orders {
-          orders(where: {fulfillment_date: {_gte: "2021-12-14", _lt: "2021-12-15"}, store: {name: {_eq: "${location}"}}}) {
+          orders(where: {store: {name: {_eq: "${location}"}}, _or: [{inserted_at: {_gte: "${date}"}, fulfillment_date: {_is_null: true}}, {fulfillment_date: {_gte: "${date}", _lt: "${date_tomorrow}"}}]}) {
+          transaction_id
+          id
           delivery_eta
           fulfillment_date
           pickup_time
-          recipient_details
+          customer_details
           order_notes
           order_items {
             quantity
             product_variant {
               name
+              id
+              product {
+                category {
+                  name
+                }
+              }
             }
             applied_modifiers {
               modifier {
                 name
               }
               quantity
+              modifier_id
             }
           }
         }
         }
       `
+      console.log(QUERY)
       const { result, error } = useQuery(QUERY)
       console.log(result)
       console.log(error)

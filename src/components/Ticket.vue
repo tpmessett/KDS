@@ -1,40 +1,38 @@
 <template>
-  <div class="card">
+  <div class="card" v-bind:class="[isActive ? 'card' : 'hide']">
     <vue-swappable-card event="click">>
       <template #content-primary>
           <div class="header">
-            <div><h5>ORDER ID: XXXXX</h5></div>
-            <div class="time"><h5>5:00 PM - 5:15 PM</h5></div>
+            <div><h5>ORDER ID: {{ transaction_id }}</h5></div>
+            <div v-show="fulfillment_date" class="time"><h5>{{ fulfillment_date }}</h5></div>
+            <div v-show="delivery_date" class="time"><h5>{{ delivery_date }}</h5></div>
           </div>
           <div class="items">
-              <h5>Category Name</h5>
-              <ul>
-                <li>item</li>
-                <li>item
-                  <ul>
-                      <li>Subitem 1</li>
-                      <li>Subitem 2</li>
+              <ul v-if="order_contents">
+                <li v-for="item in order_contents" :key="item.product_variant.id">{{item.quantity}} x {{item.product_variant.name}}
+                  <ul v-if="item.applied_modifiers">
+                    <li v-for="mod in item.applied_modifiers" :key="mod.modifier_id">{{mod.quantity}} x {{mod.modifier.name}}</li>
                   </ul>
                 </li>
-                <li>item</li>
               </ul>
-              <h5 class='notes'>ORDER NOTES:</h5>
-              <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+              <h5 class='notes' v-show='order_notes'>ORDER NOTES:</h5>
+              <p>{{order_notes}}</p>
           </div>
           <div class="footer">
-            <a class="btn-flat" href="https://google.com">MARK AS READY</a>
+            <div class="btn-flat" @click="isActive = !isActive">MARK AS READY</div>
           </div>
       </template>
       <template #content-secondary>
           <div class="header">
-            <div><h5>ORDER ID: XXXXX</h5></div>
-            <div class="time"><h5>5:00 PM - 5:15 PM</h5></div>
+            <div><h5>ORDER ID: {{ transaction_id }}</h5></div>
+            <div class="time"><h5>{{ delivery_date }}</h5></div>
           </div>
           <div class="items person-details">
-              <p><strong>NAME:</strong> </p>
-              <p><strong>PHONE:</strong> </p>
-              <p><strong>METHOD:</strong> </p>
-              <p><strong>EMAIL:</strong> </p>
+              <p><strong>FIRST NAME: </strong>{{first_name}}</p>
+              <p><strong>LAST NAME: </strong>{{last_name}}</p>
+              <p><strong>PHONE:</strong> {{contact_num}}</p>
+              <p v-show='pickup_notes'><strong>PICKUP NOTES:</strong> {{pickup_notes}}</p>
+              <p v-show='dropoff_notes'><strong>PICKUP NOTES:</strong> {{dropoff_notes}}</p>
           </div>
       </template>
     </vue-swappable-card>
@@ -43,11 +41,16 @@
 <script>
   import { VueSwappableCard } from '@dafcoe/vue-swappable-card'
   import '@dafcoe/vue-swappable-card/dist/vue-swappable-card.css'
-
   export default {
+    data: function () {
+      return {
+        isActive: true
+      };
+    },
   components: {
     VueSwappableCard
-  }
+  },
+  props: ['order_contents', 'order_notes', 'transaction_id', 'delivery_date', 'fulfillment_date', 'first_name', 'last_name', 'contact_num', 'pickup_notes', 'dropoff_notes']
 }
 
 </script>
@@ -65,6 +68,11 @@
   .footer {
     text-align: right;
     border-top: 1px solid #eee;
+    max-height: 42px;
+    position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   }
 
   .notes {
@@ -73,7 +81,9 @@
 
   .card {
     margin: 12px;
-    max-width: 30%;
+    min-width: 300px !important;
+    max-width: 300px !important;
+    min-height: 85vh !important
   }
 
   p {
@@ -113,6 +123,10 @@
     color: white;
   }
 
+  .vsc--from-bottom {
+    min-height: 80vh;
+  }
+
   .header {
     display:  flex;
     justify-content: space-between;
@@ -126,5 +140,9 @@
 
   .items {
     text-align:  left;
+  }
+
+  .hide {
+    display: none;
   }
 </style>
