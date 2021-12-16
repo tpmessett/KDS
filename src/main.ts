@@ -73,7 +73,6 @@ const store = createStore({
         }
         }
       `
-      console.log(QUERY)
       const { result, error } = useQuery(QUERY)
       console.log(result)
       console.log(error)

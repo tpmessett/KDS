@@ -4,8 +4,8 @@
       <template #content-primary>
           <div class="header">
             <div><h5>ORDER ID: {{ transaction_id }}</h5></div>
-            <div v-show="fulfillment_date" class="time"><h5>{{ fulfillment_date }}</h5></div>
-            <div v-show="delivery_date" class="time"><h5>{{ delivery_date }}</h5></div>
+            <div v-show="fulfillment_date" class="time"><h5>TIME: {{ fulfillment_date.substring(fulfillment_date.length - 8) }}</h5></div>
+            <div v-if="fulfillment_date === null" class="time"><h5>ASAP</h5></div>
           </div>
           <div class="items">
               <ul v-if="order_contents">
