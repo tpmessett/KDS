@@ -32,8 +32,10 @@
       </ticket>
     </div>
   </div>
+
   <!-- <div class="main-body" v-if="orders"></div>
     <p v-for="order in orders" :key="order.id"> {{order.transaction_id}} : {{order.fulfillment_date}}</p> -->
+
 </template>
 
 <script>
@@ -56,7 +58,7 @@ export default {
       list: computed(() => store.state.orders["orders"].slice(0).sort(function(a,b){
         return new Date(a.fulfillment_date) - new Date(b.fulfillment_date);
           })),
-      asap: computed(() => store.state.orders["orders"].slice(0).filter(order => order.fulfillment_date === null))
+      asap: computed(() => store.state.orders["orders"].slice(0).filter(order => order.fulfillment_date === null)),
     }
   },
 }

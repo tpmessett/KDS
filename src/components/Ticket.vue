@@ -7,6 +7,9 @@
             <div v-show="fulfillment_date" class="time"><h5>TIME: {{ fulfillment_date.substring(fulfillment_date.length - 8) }}</h5></div>
             <div v-if="fulfillment_date === null" class="time"><h5>ASAP</h5></div>
           </div>
+          <div v-if="dateTime >= fulfillment_date" class="overdue">
+            <p><strong>ORDER OVERDUE</strong></p>
+          </div>
           <div class="items">
               <ul v-if="order_contents">
                 <li v-for="item in order_contents" :key="item.product_variant.id">{{item.quantity}} x {{item.product_variant.name}}
@@ -41,10 +44,15 @@
 <script>
   import { VueSwappableCard } from '@dafcoe/vue-swappable-card'
   import '@dafcoe/vue-swappable-card/dist/vue-swappable-card.css'
+  const today = new Date();
+  const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  const dateTime = date+'T'+time;
   export default {
     data: function () {
       return {
-        isActive: true
+        isActive: true,
+        dateTime: dateTime
       };
     },
   components: {
@@ -57,6 +65,11 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .overdue {
+    padding: 16px 0 8px 0;
+    background-color:  #B7221B;
+    color: white;
+  }
   .person-details {
     padding: 16px 8px;
   }
