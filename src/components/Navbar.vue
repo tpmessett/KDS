@@ -34,7 +34,7 @@
     },
     methods: {
     setLocation(event) {
-      this.$store.commit('setLocation', event.target.value)
+      setInterval(this.$store.commit('setLocation', event.target.value), 30000)
     }
   },
    setup() {

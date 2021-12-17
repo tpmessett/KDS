@@ -73,10 +73,11 @@ const store = createStore({
         }
         }
       `
-      const { result, error } = useQuery(QUERY, {pollInterval: 30000})
-      console.log(result)
-      console.log(error)
-      state.orders = result
+      const { onResult } = useQuery(QUERY)
+      onResult(({ data }) => {
+        state.orders =  data
+        console.log(state.orders)
+    })
     }
   }
 })
