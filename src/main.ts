@@ -73,15 +73,21 @@ const store = createStore({
         }
         }
       `
-      const { onResult } = useQuery(QUERY)
+      const q = () => {
+        console.log("polling")
+        return QUERY
+      }
+      const { onResult } = useQuery(q, null, { pollInterval: 1000 })
       onResult(({ data }) => {
         state.orders =  data
         console.log(state.orders)
     })
-    }
+   }
   }
-})
+ })
 
 createApp(App).provide(DefaultApolloClient, apolloClient).use(store).mount('#app')
+
+
 
 

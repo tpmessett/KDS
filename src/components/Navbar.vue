@@ -34,7 +34,7 @@
     },
     methods: {
     setLocation(event) {
-      setInterval(this.$store.commit('setLocation', event.target.value), 30000)
+      this.$store.commit('setLocation', event.target.value)
     }
   },
    setup() {
@@ -42,7 +42,6 @@
       const { onResult } = useQuery(QUERY)
       onResult(({ data }) => {
         result.value = data
-        console.log(result.value)
     })
       return {
         result

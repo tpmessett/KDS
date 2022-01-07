@@ -32,7 +32,6 @@
       </ticket>
     </div>
   </div>
-
   <!-- <div class="main-body" v-if="orders"></div>
     <p v-for="order in orders" :key="order.id"> {{order.transaction_id}} : {{order.fulfillment_date}}</p> -->
 
