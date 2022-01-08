@@ -33,10 +33,15 @@
       };
     },
     methods: {
-    setLocation(event) {
-      this.$store.commit('setLocation', event.target.value)
-    }
+    setLocation: function (event) {
+      console.log("doing it")
+      setInterval(() => {
+        this.$store.dispatch('setLocation', event.target.value)
+        console.log(event.target.value)
+      }, 30000)
+    },
   },
+
    setup() {
       let result = ref();
       const { onResult } = useQuery(QUERY)

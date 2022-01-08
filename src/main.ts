@@ -34,7 +34,7 @@ const store = createStore({
       orders: {}
     }
   },
-  mutations: {
+  actions: {
     setLocation (state: any, location: string) {
       const today = new Date()
       const date = today.toISOString().split('T')[0]
@@ -73,11 +73,8 @@ const store = createStore({
         }
         }
       `
-      const q = () => {
-        console.log("polling")
-        return QUERY
-      }
-      const { onResult } = useQuery(q, null, { pollInterval: 1000 })
+
+      const { onResult } = useQuery(QUERY)
       onResult(({ data }) => {
         state.orders =  data
         console.log(state.orders)
