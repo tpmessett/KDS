@@ -35,6 +35,7 @@
     methods: {
     setLocation: function (event) {
       console.log("checking location orders")
+      this.$store.dispatch('setLocation', event.target.value)
       setInterval(() => {
         this.$store.dispatch('setLocation', event.target.value)
         console.log(`${event.target.value} checked`)
