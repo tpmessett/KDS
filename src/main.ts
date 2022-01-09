@@ -59,6 +59,7 @@ const store = createStore({
               product {
                 category {
                   name
+                  id
                 }
               }
             }
@@ -71,6 +72,10 @@ const store = createStore({
             }
           }
         }
+        categories(where: {merchant: {slug: {_eq: "crosstown"}}}) {
+          name
+          id
+         }
         }
       `
 
@@ -78,6 +83,8 @@ const store = createStore({
       onResult(({ data }) => {
         state.orders =  data
         console.log(state.orders)
+        console.log(state.orders.categories)
+        console.log(state.orders.orders)
     })
    }
   }

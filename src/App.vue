@@ -1,6 +1,7 @@
 <template>
   <Navbar></Navbar>
   <div class="main-body" v-if="orders">
+    <selector></selector>
     <div v-if="asap" class="sub-body">
       <ticket v-for="order in asap" :key="order.id"
       :transaction_id="order.transaction_id"
@@ -32,14 +33,12 @@
       </ticket>
     </div>
   </div>
-  <!-- <div class="main-body" v-if="orders"></div>
-    <p v-for="order in orders" :key="order.id"> {{order.transaction_id}} : {{order.fulfillment_date}}</p> -->
-
 </template>
 
 <script>
 import Navbar from './components/Navbar.vue'
 import Ticket from './components/Ticket.vue'
+import Selector from './components/Selector.vue'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 export default {
@@ -47,9 +46,9 @@ export default {
   components: {
     Navbar,
     Ticket,
+    Selector
   }, setup() {
     const store = useStore()
-    console.log(store.state.orders)
     return {
       orders: computed(() =>
         store.state.orders["orders"]
